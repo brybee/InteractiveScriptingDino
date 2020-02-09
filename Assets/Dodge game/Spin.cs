@@ -29,6 +29,11 @@ public class Spin : MonoBehaviour
 
   public GameObject deathScreen;
 
+  public float speed = 10;
+  
+
+  
+
   public bool restart = false;
 
   private Rigidbody rb;
@@ -36,6 +41,15 @@ public class Spin : MonoBehaviour
   private float playerHeight;
 
   public float score = 0;
+
+
+
+  public AudioSource aud;
+  public AudioClip jump;
+  public AudioClip score100;
+  public AudioClip speedUpSound;
+  public AudioClip death;
+
 
   
   
@@ -61,6 +75,7 @@ public class Spin : MonoBehaviour
       //if the player presses "jump" addForce to y-axis
       if(Input.GetButtonDown("Jump") && isGrounded){
         rb.AddRelativeForce(0,jumpForce,0, ForceMode.Impulse);
+        aud.PlayOneShot(jump);
       }
 
       //if the player presses down arrow, crouch, change player hieght to 1/2
@@ -79,9 +94,27 @@ public class Spin : MonoBehaviour
 
       //add ten points to score every second
       score += Time.deltaTime * 10;
+      //Debug.Log(score%50);
 
       //update scoreText with score
       scoreText.text = "Score: " + score.ToString("0");
+
+      if(((int)score)%50 == 0 && score < 10000 && score > 1 ){
+        if (score%50 < 0.13f){
+          speed ++;
+          Debug.Log("50");
+          aud.PlayOneShot(speedUpSound);
+        }
+        
+      }
+
+      if (((int)score)%100 == 0 && score != 0 && score > 1){
+        if (score%100 < 0.13f){
+          Debug.Log("100");
+          aud.PlayOneShot(score100);
+        }
+        
+      }
 
       //spawn obsticles at random intervals and heights
       if(timer > 0){
@@ -94,8 +127,13 @@ public class Spin : MonoBehaviour
 
       if (restart){
         score = 0;
+        speed = 10;
         restart = false;
       }
+
+      
+
+      
 
     }
 
@@ -125,6 +163,7 @@ public class Spin : MonoBehaviour
           
         }
         deathScreen.SetActive(true);
+        aud.PlayOneShot(death);
         
       }
     }
