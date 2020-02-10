@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
 
         }else{
             rb.drag = 0f;
-            rb.AddRelativeForce(0, -downForce, 0);
+            rb.AddForce(0, -downForce, 0);
         }
         
 
@@ -39,6 +40,12 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true;
         }
 
+    }
+
+    void OnTriggerEnter(Collider other){
+        if(other.gameObject.CompareTag("Restart")){
+            SceneManager.LoadScene(0);
+        }
     }
     void OnTriggerExit(Collider other){
         if(other.gameObject.CompareTag("Ground")){
