@@ -10,11 +10,17 @@ public class PlayerMovement : MonoBehaviour
                 rotSpeed = 20f,
                 chosenDrag = 0.5f,
                 downForce = 10f;
+    
     private bool isGrounded;
+
+    public Transform startSpawn;
+
+    Transform cp;
 
 
     void Start(){
         rb = this.GetComponent<Rigidbody>();
+        cp = startSpawn;
     }
 
     public void Move(float h, float v){
@@ -44,8 +50,16 @@ public class PlayerMovement : MonoBehaviour
 
     void OnTriggerEnter(Collider other){
         if(other.gameObject.CompareTag("Restart")){
-            SceneManager.LoadScene(0);
+            this.transform.position =  cp.position;
+            this.transform.rotation = cp.rotation;
         }
+
+        if (other.gameObject.CompareTag("Checkpoint")){
+            cp = other.transform.GetChild(0).transform;
+            Debug.Log("Checkpoint Set");
+
+        }
+        
     }
     void OnTriggerExit(Collider other){
         if(other.gameObject.CompareTag("Ground")){

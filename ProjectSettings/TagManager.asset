@@ -7,6 +7,8 @@ TagManager:
   - Obstacle
   - Ground
   - Restart
+  - Key
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
