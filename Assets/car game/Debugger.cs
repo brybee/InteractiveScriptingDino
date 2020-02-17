@@ -38,35 +38,35 @@ public class Debugger : MonoBehaviour
             Application.LoadLevel(0);
             
         }
-        if (input == "hello"){
+        else if (input == "hello"){
             debugText.text = "hell o.";
         }
-        if (input == "TimeSlow"){
+        else if (input == "TimeSlow"){
             Time.timeScale = 0.5f;
             debugText.text = "SlowMo";
         }
-        if (input == "TimeFreeze"){
+        else if (input == "TimeFreeze"){
             Time.timeScale = 0f;
             debugText.text = "Frozen";
         }
-        if (input == "TimeSpeed"){
+        else if (input == "TimeSpeed"){
             Time.timeScale = 2f;
             debugText.text = "Double Speed!";
         }
-        if (input == "TimeNorm"){
+        else if (input == "TimeNorm"){
             Time.timeScale = 1f;
             debugText.text = "Speed Back to normal";
         }
-        if (input.Contains("K+")){
+        else if (input.Contains("K+")){
             string[] letters = input.Split(' ');
             int num = int.Parse(letters[1]);
             Debug.Log(num);
             playerKeys.keys = num;
             keyCount.text = "Keys = " + playerKeys.keys;
-            debugText.text = num + "Keys Added!";
+            debugText.text = num + " Keys Added!";
         }
         
-        if (input.Contains("PlayerSpeed")){
+        else if (input.Contains("PlayerSpeed")){
             string[] letters = input.Split(' ');
             float num = float.Parse(letters[1]);
             Debug.Log(num);
@@ -74,30 +74,30 @@ public class Debugger : MonoBehaviour
             debugText.text = "Speed changed to " + num;
             
         }
-        if (input.Contains("PlayerRot")){
+        else if (input.Contains("PlayerRot")){
             string[] letters = input.Split(' ');
             float num = float.Parse(letters[1]);
             Debug.Log(num);
             playerRef.rotSpeed = num;
             debugText.text = "Rotation speed changed to " + num;
         }
-        if (input.Contains("CP")){
+        else if (input.Contains("CP")){
             string[] letters = input.Split(' ');
             int num = int.Parse(letters[1]);
             Debug.Log(num);
             CheckPoints(num);
             debugText.text = "teleported to checkpoint " + num;
         }
-        if (input == "Help"){
+        else if (input == "Help"){
             debugText.text = "CP num = checkpoints,  PlayerRot num/PlayerSpeed num = changing the players speed settings, K+ num = choose number of keys, Key = the amount you have, TimeSlow = half speed, TimeSpeed = double speed, TimeFreeze = frozen/paused, TimeNorm = normal time, reload scene = complete restart";
 
         
         }
-        if (input == "Clear"){
+        else if (input == "Clear"){
             debugText.text = "";
 
         }
-        if (input == "@Key"){
+        else if (input == "@Key"){
             debugText.text = "Keys = " + playerKeys.keys;
         }
         else{
