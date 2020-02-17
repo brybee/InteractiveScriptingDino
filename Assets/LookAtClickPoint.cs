@@ -10,7 +10,7 @@ public class LookAtClickPoint : MonoBehaviour
 
     public Transform bulletSpawn;
     public Rigidbody bulletPrefab;
-    
+
     [SerializeField]
     [Range(20f, 100f)]
     public float bulletSpeed = 50f;
@@ -42,7 +42,7 @@ public class LookAtClickPoint : MonoBehaviour
     IEnumerator LookAtMousePoint(){
         while(true){
             RaycastHit hit;
-            if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100)){
+            if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, 5)){
                 transform.LookAt(hit.point);
             }
             yield return new WaitForSeconds(interval);
