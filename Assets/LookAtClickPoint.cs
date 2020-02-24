@@ -35,7 +35,7 @@ public class LookAtClickPoint : MonoBehaviour
     void Shoot(){
         Rigidbody bullet = Instantiate ( bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
         bullet.AddRelativeForce(Vector3.forward * bulletSpeed, ForceMode.Impulse);
-        Destroy(bullet, 5);
+        Destroy(bullet.gameObject, 5);
 
     }
 
