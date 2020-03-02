@@ -38,6 +38,7 @@ public class EnemyTurretTwo : MonoBehaviour
                     bullet.transform.rotation = bulletSpawn.rotation;
                     bullet.transform.localScale = Vector3.one * 0.2f;
                     Rigidbody rb = bullet.AddComponent<Rigidbody>();
+                    bullet.gameObject.tag = "EnemyBullet";
                     rb.AddRelativeForce(Vector3.forward * bulletSpeed, ForceMode.Impulse);
                     Debug.DrawRay(bulletSpawn.position, bulletSpawn.forward * 50, Color.cyan, 1);
                     

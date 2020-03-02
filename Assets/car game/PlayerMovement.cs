@@ -15,12 +15,24 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform startSpawn;
 
-    Transform cp;
+    public HitBox hitBox;
 
+    Transform cp;
+     
 
     void Start(){
         rb = this.GetComponent<Rigidbody>();
         cp = startSpawn;
+    }
+
+    void Update(){
+        if(hitBox.health < 0){
+            CheckpointLoad();
+            hitBox.health = 100;
+
+        }
+
+    
     }
 
     public void Move(float h, float v){
@@ -50,8 +62,8 @@ public class PlayerMovement : MonoBehaviour
 
     void OnTriggerEnter(Collider other){
         if(other.gameObject.CompareTag("Restart")){
-            this.transform.position =  cp.position;
-            this.transform.rotation = cp.rotation;
+            CheckpointLoad();
+            
         }
 
         if (other.gameObject.CompareTag("Checkpoint")){
@@ -67,5 +79,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         
+    }
+
+    void CheckpointLoad(){
+        this.transform.position =  cp.position;
+        this.transform.rotation = cp.rotation;
+
     }
 }

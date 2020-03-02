@@ -10,6 +10,8 @@ TagManager:
   - Key
   - Checkpoint
   - Target
+  - Bullet
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
